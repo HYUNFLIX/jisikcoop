@@ -1,0 +1,400 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.slider-container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    width: 600%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    width: 16.6666%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-content {
+    width: 1080px;
+    height: 1080px;
+    max-width: 90vw;
+    max-height: 90vh;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Slide backgrounds */
+#slide-1 .slide-content {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+}
+
+#slide-2 .slide-content {
+    background-color: #f9fafb;
+}
+
+#slide-3 .slide-content {
+    background-color: #f0f9ff;
+}
+
+#slide-4 .slide-content {
+    background-color: #f0f9ff;
+}
+
+#slide-5 .slide-content {
+    background-color: #f8fafc;
+}
+
+#slide-6 .slide-content {
+    background-color: #f8fafc;
+}
+
+/* Navigation elements */
+.navigation {
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(59, 130, 246, 0.9);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: rgba(37, 99, 235, 1);
+    transform: translateY(-2px);
+}
+
+.nav-dots {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(203, 213, 225, 0.8);
+    margin: 0 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: rgba(59, 130, 246, 0.9);
+    transform: scale(1.2);
+}
+
+/* Slide 1 styles */
+.calendar-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 180px;
+    height: 180px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(5deg);
+}
+
+.month {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0ea5e9;
+    margin-bottom: 10px;
+}
+
+.year {
+    font-size: 22px;
+    color: #64748b;
+}
+
+.decorative-circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(14, 165, 233, 0.15);
+}
+
+.title-highlight {
+    background: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(14, 165, 233, 0.3) 60%);
+    padding: 0 15px;
+}
+
+/* Slide 2 styles - Rain animation */
+.rain {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(120, 160, 255, 0), rgba(120, 160, 255, 0.6));
+    height: 20px;
+    animation: rain 0.7s infinite linear;
+    opacity: 0.6;
+}
+
+@keyframes rain {
+    0% { transform: translateY(-20px); }
+    100% { transform: translateY(100px); }
+}
+
+.highlight {
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: rgba(96, 165, 250, 0.3);
+    z-index: -1;
+    border-radius: 4px;
+}
+
+.quote-mark {
+    font-size: 120px;
+    position: absolute;
+    opacity: 0.08;
+    color: #3b82f6;
+    font-family: serif;
+    line-height: 0;
+}
+
+/* Slide 3 styles */
+.card {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: #3b82f6;
+}
+
+.badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 100px;
+    height: 100px;
+    background: #3b82f6;
+    transform: rotate(45deg);
+}
+
+.badge-text {
+    position: absolute;
+    bottom: 20px;
+    right: 2px;
+    transform: rotate(-45deg);
+    color: white;
+    font-weight: bold;
+}
+
+.circle-bg {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+}
+
+.page-number {
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1;
+    padding-right: 12px;
+    border-right: 3px solid #2563eb;
+}
+
+.page-text {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #1e40af;
+    margin-left: 12px;
+}
+
+.total-pages {
+    font-size: 1rem;
+    color: #64748b;
+    margin-left: 6px;
+}
+
+/* Slide 4 styles */
+.blue-card {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    color: white;
+    overflow: hidden;
+}
+
+.yellow-tag {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.blue-tag {
+    background-color: #dbeafe;
+    color: #1e40af;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.green-tag {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Slide 5 styles */
+.program-card {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    background-color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.program-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+}
+
+.icon-bg {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+/* Slide 6 styles */
+.event-card {
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.event-header {
+    padding: 20px 30px;
+    color: white;
+}
+
+.event-content {
+    padding: 30px;
+    background-color: white;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.info-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+.presenter-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.event-title {
+    padding: 5px 12px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.85);
+    display: inline-block;
+}
+
+/* Circle decorations for slide 6 */
+.circle-decoration {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+}
