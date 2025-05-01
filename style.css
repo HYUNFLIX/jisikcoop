@@ -485,3 +485,27 @@ body {
         margin-top: 40px; /* 모바일에서는 상단 여백 줄임 */
     }
 }
+/* 6페이지 이벤트 제목 텍스트 색상 수정 */
+.event-title {
+    padding: 5px 12px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.85);
+    display: inline-block;
+    color: #1e3a8a; /* 더 진한 파란색으로 변경 */
+    font-weight: 700; /* 굵기 증가 */
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); /* 가독성을 위한 텍스트 그림자 추가 */
+}
+
+/* 특별히 세계식탁여행 이벤트 제목 추가 강조 */
+#slide-6 .event-card:first-child .event-title {
+    color: #065f46; /* 티얼 계열 진한 색상 */
+    background-color: rgba(255, 255, 255, 0.9); /* 배경 더 불투명하게 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
+
+/* 경영자 행복학교 이벤트 제목 강조 */
+#slide-6 .event-card:last-child .event-title {
+    color: #1e40af; /* 인디고 계열 진한 색상 */
+    background-color: rgba(255, 255, 255, 0.9); /* 배경 더 불투명하게 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+}
