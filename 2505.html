@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조합원레터(2025.5월)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        
+        .slider-container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slides {
+            display: flex;
+            width: 600%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slide {
+            width: 16.6666%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .slide-content {
+            width: 1080px;
+            height: 1080px;
+            max-width: 90vw;
+            max-height: 90vh;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #slide-1 .slide-content {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+        }
+        
+        #slide-2 .slide-content {
+            background-color: #f9fafb;
+        }
+        
+        #slide-3 .slide-content {
+            background-color: #f0f9ff;
+        }
+        
+        #slide-4 .slide-content {
+            background-color: #f0f9ff;
+        }
+        
+        #slide-5 .slide-content {
+            background-color: #f8fafc;
+        }
+        
+        #slide-6 .slide-content {
+            background-color: #f8fafc;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(59, 130, 246, 0.9);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background-color: rgba(37, 99, 235, 1);
+            transform: translateY(-2px);
+        }
+        
+        .nav-dots {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 999;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(203, 213, 225, 0.8);
+            margin: 0 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: rgba(59, 130, 246, 0.9);
+            transform: scale(1.2);
+        }
+        
+        /* Original slide styles */
+        .calendar-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 180px;
+            height: 180px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(5deg);
+        }
+        
+        .month {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0ea5e9;
+            margin-bottom: 10px;
+        }
+        
+        .year {
+            font-size: 22px;
+            color: #64748b;
+        }
+        
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(14, 165, 233, 0.15);
+        }
+        
+        .title-highlight {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(14, 165, 233, 0.3) 60%);
+            padding: 0 15px;
+        }
+        
+        /* Rain animation for slide 2 */
+        .rain {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(120, 160, 255, 0), rgba(120, 160, 255, 0.6));
+            height: 20px;
+            animation: rain 0.7s infinite linear;
+            opacity: 0.6;
+        }
+        
+        @keyframes rain {
+            0% { transform: translateY(-20px); }
+            100% { transform: translateY(100px); }
+        }
+        
+        .highlight {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(96, 165, 250, 0.3);
+            z-index: -1;
+            border-radius: 4px;
+        }
+        
+        .quote-mark {
+            font-size: 120px;
+            position: absolute;
+            opacity: 0.08;
+            color: #3b82f6;
+            font-family: serif;
+            line-height: 0;
+        }
+        
+        /* Styles for slide 3 */
+        .card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: #3b82f6;
+        }
+        
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 100px;
+            height: 100px;
+            background: #3b82f6;
+            transform: rotate(45deg);
+        }
+        
+        .badge-text {
+            position: absolute;
+            bottom: 20px;
+            right: 2px;
+            transform: rotate(-45deg);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .circle-bg {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .page-title {
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-number {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1;
+            padding-right: 12px;
+            border-right: 3px solid #2563eb;
+        }
+        
+        .page-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin-left: 12px;
+        }
+        
+        .total-pages {
+            font-size: 1rem;
+            color: #64748b;
+            margin-left: 6px;
+        }
+        
+        /* Styles for slide 4 */
+        .blue-card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            color: white;
+            overflow: hidden;
+        }
+        
+        .yellow-tag {
+            background-color: #fef3c7;
+            color: #92400e;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .blue-tag {
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .green-tag {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        /* Styles for slide 5 */
+        .program-card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background-color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+        }
+        
+        .icon-bg {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        
+        /* Styles for slide 6 */
+        .event-card {
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .event-header {
+            padding: 20px 30px;
+            color: white;
+        }
+        
+        .event-content {
+            padding: 30px;
+            background-color: white;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+        
+        .presenter-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+        
+        .event-title {
+            padding: 5px 12px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.85);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slides" id="slides">
+            <!-- Slide 1 -->
+            <div class="slide" id="slide-1">
+                <div class="slide-content flex flex-col items-center justify-center relative">
+                    <!-- Decorative elements -->
+                    <div class="decorative-circle" style="width: 300px; height: 300px; left: -100px; top: 200px; opacity: 0.4;"></div>
+                    <div class="decorative-circle" style="width: 200px; height: 200px; right: -50px; bottom: 150px; opacity: 0.3;"></div>
+                    <div class="decorative-circle" style="width: 500px; height: 500px; left: 400px; top: -250px; opacity: 0.2;"></div>
+                    
+                    <!-- Calendar icon -->
+                    <div class="calendar-icon">
+                        <div class="month">5월</div>
+                        <div class="year">2025</div>
+                        <div class="mt-2 text-5xl text-blue-500">
+                            <i class="far fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Small building icon -->
+                    <div class="absolute bottom-12 right-20 text-8xl text-blue-500 opacity-20">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div class="text-center px-8 z-10">
+                        <div class="mb-6 flex items-center justify-center">
+                            <div class="w-20 h-1 bg-blue-500 rounded mr-4"></div>
+                            <div class="text-blue-600 font-medium text-xl">MONTHLY NEWSLETTER</div>
+                            <div class="w-20 h-1 bg-blue-500 rounded ml-4"></div>
+                        </div>
+                        
+                        <h1 class="text-7xl font-black text-gray-800 mb-6">
+                            <span class="title-highlight">조합원레터</span>
+                        </h1>
+                        
+                        <div class="text-3xl font-medium text-gray-600 mb-12">
+                            지식플랫폼협동조합 소식지
+                        </div>
+                        
+                        <div class="flex items-center justify-center mb-16">
+                            <div class="bg-white px-8 py-4 rounded-full shadow-lg text-blue-600 text-2xl font-bold">
+                                2025년 5월호
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex items-center justify-center space-x-8">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>서대문 행복이룸센터</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>지식플랫폼협동조합</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide" id="slide-2">
+                <div class="slide-content flex flex-col items-center justify-center p-16 relative">
+                    <!-- Rain animation elements -->
+                    <div class="rain-container"></div>
+                    
+                    <!-- Top decorative elements -->
+                    <div class="absolute top-16 right-16 flex items-center">
+                        <div class="text-blue-400 text-5xl mr-4">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="text-gray-400 text-5xl">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Page indicator -->
+                    <div class="absolute top-14 left-16 flex items-center">
+                        <div class="text-3xl font-bold text-blue-600">02</div>
+                        <div class="ml-2 text-gray-400">/06</div>
+                    </div>
+
+                    <!-- Main content -->
+                    <div class="text-center mb-12 relative">
+                        <span class="quote-mark" style="top: -80px; left: -40px;">"</span>
+                        <h1 class="text-5xl font-bold text-gray-800 mb-10">안녕하세요</h1>
+                        <div class="text-2xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+                            <p class="mb-6">
+                                <span class="highlight font-medium text-3xl">5월의 첫날</span>입니다.
+                            </p>
+                            <p class="mb-6">
+                                아침부터 날이 흐리더니 비가 내리네요. 젖은 도로때문에 마을버스가 이룸센터로 가는 언덕을 올라가는데 힘들어 하네요. <span class="text-blue-500">^^</span>
+                            </p>
+                            <p class="mt-10 text-xl text-gray-600">
+                                먼저 4월에 진행된 일들과 5월의 일정 공유드립니다.
+                            </p>
+                        </div>
+                        <span class="quote-mark" style="bottom: -80px; right: -40px;">"</span>
+                    </div>
+
+                    <!-- Bottom decorative elements -->
+                    <div class="absolute bottom-0 left-0 w-full h-44 bg-gradient-to-t from-blue-100 to-transparent opacity-50"></div>
+                    
+                    <div class="absolute bottom-16 w-full flex justify-center space-x-16">
+                        <div class="text-center">
+                            <div class="text-5xl text-blue-500 mb-4">
+                                <i class="far fa-calendar-check"></i>
+                            </div>
+                            <div class="text-gray-600 font-medium">4월 리뷰</div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="text-5xl text-blue-500 mb-4">
+                                <i class="far fa-calendar"></i>
+                            </div>
+                            <div class="text-gray-600 font-medium">5월 일정</div>
+                        </div>
+                    </div>
+
+                    <!-- Signature -->
+                    <div class="absolute bottom-10 right-16 text-gray-500 text-lg flex items-center">
+                        <div class="mr-3">김동규 드림</div>
+                        <div class="text-gray-400">(2025.5.1.목)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide" id="slide-3">
+                <div class="slide-content flex flex-col items-center justify-start p-16 relative">
+                    <!-- Decorative circles -->
+                    <div class="circle-bg" style="width: 400px; height: 400px; top: -200px; left: -100px;"></div>
+                    <div class="circle-bg" style="width: 300px; height: 300px; bottom: -100px; right: -100px;"></div>
+                    
+                    <!-- Modified Page indicator -->
+                    <div class="absolute top-14 left-16 page-title">
+                        <div class="page-number">03</div>
+                        <div class="page-text">4월 리뷰 서대문구</div>
+                        <div class="total-pages">/06</div>
+                    </div>
+                    
+                    <!-- Header section -->
+                    <div class="w-full flex items-center mb-12">
+                        <div class="bg-blue-500 h-16 w-2 mr-6"></div>
+                        <div>
+                            <h2 class="text-gray-500 text-xl font-medium mb-1">4월 리뷰</h2>
+                            <h1 class="text-4xl font-bold text-gray-800">서대문구 행복이룸센터</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Main content -->
+                    <div class="w-full flex items-start justify-between">
+                        <!-- Left section - Building icon and completed info -->
+                        <div class="w-1/3 flex flex-col items-center justify-center pr-8">
+                            <div class="text-9xl text-blue-500 mb-8">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            
+                            <div class="bg-white card p-6 w-full relative">
+                                <div class="badge"></div>
+                                <div class="badge-text">완료!</div>
+                                
+                                <h3 class="text-2xl font-bold text-gray-800 mt-4 mb-6 pl-4">계약 완료</h3>
+                                
+                                <div class="flex items-center mb-4 pl-4">
+                                    <div class="rounded-full bg-green-100 p-2 mr-3">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <div class="text-gray-700">서대문구 행복이룸센터</div>
+                                </div>
+                                
+                                <div class="flex items-center pl-4">
+                                    <div class="rounded-full bg-green-100 p-2 mr-3">
+                                        <i class="fas fa-calendar-check text-green-500"></i>
+                                    </div>
+                                    <div class="text-gray-700">2025년 4월</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right section - Meeting details -->
+                        <div class="w-2/3 bg-white card p-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-6 pl-4">진행된 활동</h3>
+                            
+                            <div class="space-y-6 pl-4">
+                                <div class="flex">
+                                    <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-tasks text-2xl text-blue-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-700">프로그램 실행계획</h4>
+                                        <p class="text-gray-600 mt-1">프로그램 일정 및 세부 운영 방안 확정</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex">
+                                    <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-chair text-2xl text-blue-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-700">공간세팅</h4>
+                                        <p class="text-gray-600 mt-1">프로그램 운영을 위한 공간 구성 및 준비</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex">
+                                    <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-users text-2xl text-blue-500"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold text-gray-700">실무미팅</h4>
+                                        <p class="text-gray-600 mt-1">이룸센터에서 다양한 실무회의 진행됨</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-10 pl-4 pt-6 border-t border-gray-200">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="fas fa-lightbulb text-yellow-500"></i>
+                                    </div>
+                                    <div class="text-lg text-gray-700">
+                                        이룸센터를 통해 다양한 지역 활동이 시작됩니다!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom section - next step -->
+                    <div class="mt-10 w-full flex justify-end">
+                        <div class="bg-blue-100 py-3 px-6 rounded-lg flex items-center">
+                            <i class="fas fa-arrow-right text-blue-500 mr-2"></i>
+                            <span class="text-blue-700">다음 페이지에서 4월 지식놀이터 소식을 확인하세요</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="slide" id="slide-4">
+                <div class="slide-content flex flex-col items-center justify-start p-16 relative">
+                    <!-- Decorative circles -->
+                    <div class="circle-bg" style="width: 550px; height: 550px; bottom: -250px; right: -250px;"></div>
+                    <div class="circle-bg" style="width: 350px; height: 350px; top: -180px; left: -150px;"></div>
+                    
+                    <!-- Modified Page indicator -->
+                    <div class="absolute top-14 left-16 page-title">
+                        <div class="page-number">04</div>
+                        <div class="page-text">4월 리뷰 지식놀이터</div>
+                        <div class="total-pages">/06</div>
+                    </div>
+                    
+                    <!-- Header section -->
+                    <div class="w-full flex items-center mb-12">
+                        <div class="bg-blue-500 h-16 w-2 mr-6"></div>
+                        <div>
+                            <h2 class="text-gray-500 text-xl font-medium mb-1">4월 리뷰</h2>
+                            <h1 class="text-4xl font-bold text-gray-800">4월 지식놀이터</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Main content -->
+                    <div class="w-full flex flex-col z-10">
+                        <!-- April Event Card -->
+                        <div class="card p-8 mb-10">
+                            <div class="flex justify-between items-start">
+                                <!-- Left side - Event details -->
+                                <div class="flex-grow">
+                                    <div class="yellow-tag inline-block mb-4">
+                                        <i class="far fa-calendar-alt mr-1"></i> 4월 개최
+                                    </div>
+                                    
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-6">4월 지식놀이터 진행</h3>
+                                    
+                                    <div class="grid grid-cols-2 gap-6">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                                <i class="far fa-clock text-xl text-blue-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-700">일시</h4>
+                                                <p class="text-gray-600">2025년 4/26(토)</p>
+                                                <p class="text-gray-600">14:00-18:00</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                                <i class="fas fa-map-marker-alt text-xl text-blue-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-700">장소</h4>
+                                                <p class="text-gray-600">서대문행복이룸센터</p>
+                                                <p class="text-gray-500 text-sm">(서대문문화체육회관 지하1층)</p>
+</div>
+                                        </div>
+                                        
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                                <i class="fas fa-users text-xl text-blue-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-700">참석자</h4>
+                                                <p class="text-gray-600">15명 내외</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                                <i class="fas fa-book-reader text-xl text-blue-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-700">내용</h4>
+                                                <p class="text-gray-600">참석자 근황 토크</p>
+                                                <p class="text-gray-600">주제강연(온톨로지)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right side - Icon illustration -->
+                                <div class="ml-8 flex-shrink-0">
+                                    <div class="w-36 h-36 bg-blue-50 rounded-full flex items-center justify-center">
+                                        <div class="text-6xl text-blue-400">
+                                            <i class="fas fa-brain"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Expansion direction -->
+                        <div class="blue-card p-8">
+                            <div class="flex justify-between items-start">
+                                <div class="flex-grow">
+                                    <div class="yellow-tag inline-block mb-4 bg-white text-blue-700">
+                                        <i class="fas fa-arrow-right mr-1"></i> 5월부터의 변화
+                                    </div>
+                                    
+                                    <h3 class="text-2xl font-bold text-white mb-6">지식놀이터 운영 방향</h3>
+                                    
+                                    <div class="flex items-start space-x-8 mb-8">
+                                        <div class="flex-1 bg-white bg-opacity-20 rounded-lg p-5">
+                                            <div class="text-4xl mb-3">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </div>
+                                            <h4 class="font-bold mb-2">일정</h4>
+                                            <p>매월 마지막 토요일<br>14:00-18:00</p>
+                                        </div>
+                                        
+                                        <div class="flex-1 bg-white bg-opacity-20 rounded-lg p-5">
+                                            <div class="text-4xl mb-3">
+                                                <i class="fas fa-handshake"></i>
+                                            </div>
+                                            <h4 class="font-bold mb-2">참여 확대</h4>
+                                            <p>지식플랫폼협동조합과<br>외부 단체/기관 협업</p>
+                                        </div>
+                                        
+                                        <div class="flex-1 bg-white bg-opacity-20 rounded-lg p-5">
+                                            <div class="text-4xl mb-3">
+                                                <i class="fas fa-expand-arrows-alt"></i>
+                                            </div>
+                                            <h4 class="font-bold mb-2">목표</h4>
+                                            <p>지식놀이터 규모 확대<br>참여자 다양화</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-white bg-opacity-10 rounded-lg p-6 flex items-center">
+                                        <div class="flex-shrink-0 text-5xl mr-6">
+                                            <i class="far fa-calendar-check"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold mb-1">5월 첫 시행</h4>
+                                            <p class="text-blue-50">5월 31일(토) - 외롭지 않은 경영자행복학교 프로그램과 병행</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 5 -->
+            <div class="slide" id="slide-5">
+                <div class="slide-content flex flex-col items-center justify-start p-16 relative">
+                    <!-- Decorative elements -->
+                    <div class="circle-bg bg-green-200" style="width: 400px; height: 400px; top: -200px; right: -100px;"></div>
+                    <div class="circle-bg bg-blue-200" style="width: 350px; height: 350px; bottom: -150px; left: -150px;"></div>
+                    <div class="circle-bg bg-yellow-200" style="width: 300px; height: 300px; bottom: 200px; right: 100px;"></div>
+                    
+                    <!-- Modified Page indicator -->
+                    <div class="absolute top-14 left-16 page-title">
+                        <div class="page-number">05</div>
+                        <div class="page-text">5월 일정 프로그램</div>
+                        <div class="total-pages">/06</div>
+                    </div>
+                    
+                    <!-- Header section -->
+                    <div class="w-full flex items-center mb-10 z-10">
+                        <div class="bg-green-500 h-16 w-2 mr-6"></div>
+                        <div>
+                            <h2 class="text-gray-500 text-xl font-medium mb-1">5월 일정</h2>
+                            <h1 class="text-4xl font-bold text-gray-800">행복이룸센터 프로그램 안내</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Programs introduction -->
+                    <div class="w-full text-center mb-8 z-10">
+                        <div class="inline-block bg-green-50 text-green-700 px-4 py-2 rounded-full text-lg font-medium">
+                            <i class="far fa-calendar-alt mr-2"></i>2025년 주요 프로그램
+                        </div>
+                    </div>
+                    
+                    <!-- Programs grid -->
+                    <div class="grid grid-cols-2 gap-6 w-full z-10">
+                        <!-- Program 1 -->
+                        <div class="program-card p-6">
+                            <div class="card-accent bg-blue-500"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-blue-100">
+                                        <i class="fas fa-briefcase text-3xl text-blue-500"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">외롭지 않은 경영자 행복학교</h3>
+                                    <p class="text-gray-600">경영자의 창업스토리 발표, 협업 프로젝트 기획 및 온톨로지 방식을 적용한 문제해결 솔루션</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-blue-500 mr-3"><i class="far fa-calendar"></i></div>
+                                        <div class="text-gray-500">5/31(토) 14:00-18:00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 2 -->
+                        <div class="program-card p-6">
+                            <div class="card-accent bg-green-500"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-green-100">
+                                        <i class="fas fa-globe-americas text-3xl text-green-500"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">세계 식탁 여행 & 지구학교</h3>
+                                    <p class="text-gray-600">커피벨트를 통한 세계 경제/문화 탐방 및 핸드드립 체험</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-green-500 mr-3"><i class="far fa-calendar"></i></div>
+                                        <div class="text-gray-500">5/23(금) 18:00-21:00</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 3 -->
+                        <div class="program-card p-6">
+                            <div class="card-accent bg-purple-500"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-purple-100">
+                                        <i class="fas fa-book-reader text-3xl text-purple-500"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">휴먼라이브러리 [해피니스]</h3>
+                                    <p class="text-gray-600">사람이 책이 되어 자신의 경험과 이야기를 나누는 대화형 프로그램</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-purple-500 mr-3"><i class="fas fa-users"></i></div>
+                                        <div class="text-gray-500">정기 운영</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 4 -->
+                        <div class="program-card p-6">
+                            <div class="card-accent bg-yellow-500"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-yellow-100">
+                                        <i class="fas fa-seedling text-3xl text-yellow-500"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">캐릭터 기반 환경교육 및 전시</h3>
+                                    <p class="text-gray-600">친근한 캐릭터를 활용한 환경 교육 프로그램과 관련 작품 전시</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-yellow-500 mr-3"><i class="fas fa-image"></i></div>
+                                        <div class="text-gray-500">상시 전시 및 교육</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 5 -->
+                        <div class="program-card p-6 col-span-2">
+                            <div class="card-accent bg-red-500"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-red-100">
+                                        <i class="fas fa-book text-3xl text-red-500"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow">
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">독서모임 [독서놀이터]</h3>
+                                    <p class="text-gray-600">다양한 책을 함께 읽고 토론하며 생각을 나누는 소통형 독서 모임</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-red-500 mr-3"><i class="far fa-comments"></i></div>
+                                        <div class="text-gray-500">정기 운영</div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 ml-6">
+                                    <div class="text-5xl text-red-200">
+                                        <i class="fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA section -->
+                    <div class="mt-12 text-center z-10">
+                        <p class="text-gray-600 mb-4">프로그램에 참여하시면 다양한 경험과 지식을 얻을 수 있습니다</p>
+                        <div class="inline-block bg-green-500 text-white px-6 py-3 rounded-full font-medium">
+                            5월 상세 일정은 다음 페이지를 확인하세요 <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 6 -->
+            <div class="slide" id="slide-6">
+                <div class="slide-content flex flex-col p-16 relative">
+                    <!-- Decorative elements -->
+                    <div class="circle-decoration bg-blue-500" style="width: 300px; height: 300px; top: -150px; right: -100px;"></div>
+                    <div class="circle-decoration bg-green-500" style="width: 400px; height: 400px; bottom: -200px; left: -150px;"></div>
+                    
+                    <!-- Page indicator -->
+                    <div class="absolute top-14 left-16 page-title">
+                        <div class="page-number">06</div>
+                        <div class="page-text">5월 일정 세부안내</div>
+                        <div class="total-pages">/06</div>
+                    </div>
+                    
+                    <!-- Header section -->
+                    <div class="w-full flex items-center mb-8 z-10">
+                        <div class="bg-green-500 h-16 w-2 mr-6"></div>
+                        <div>
+                            <h2 class="text-gray-500 text-xl font-medium mb-1">5월 일정</h2>
+                            <h1 class="text-4xl font-bold text-gray-800">5월 주요 행사 안내</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Events container -->
+                    <div class="flex space-x-8 w-full z-10">
+                        <!-- Event 1: 세계식탁여행 및 지구학교 -->
+                        <div class="event-card w-1/2">
+                            <div class="event-header bg-gradient-to-r from-teal-500 to-green-500">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-2xl font-bold event-title text-teal-900">세계식탁여행 &amp; 지구학교</h2>
+                                    <div class="text-5xl">
+                                        <i class="fas fa-globe-americas"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="info-item">
+                                    <div class="info-icon bg-teal-100">
+                                        <i class="far fa-calendar-alt text-2xl text-teal-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">일시</h3>
+                                        <p class="text-gray-600">2025년 5월 23일(금)</p>
+                                        <p class="text-teal-700 font-medium">18:00 - 21:00</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon bg-teal-100">
+                                        <i class="fas fa-map-marker-alt text-2xl text-teal-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">장소</h3>
+                                        <p class="text-gray-600">서대문 행복이룸센터</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon bg-teal-100">
+                                        <i class="fas fa-coffee text-2xl text-teal-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">내용</h3>
+                                        <p class="text-gray-600 mb-2">커피벨트를 통한 세계 경제/문화 탐방</p>
+                                        <p class="text-gray-600">핸드드립 체험</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon bg-teal-100">
+                                        <i class="fas fa-user-tie text-2xl text-teal-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">발표자</h3>
+                                        <div class="mt-2 flex flex-wrap">
+                                            <div class="presenter-badge bg-teal-50 text-teal-700">
+                                                <i class="fas fa-user mr-2"></i> 김동규
+                                            </div>
+                                            <div class="presenter-badge bg-teal-50 text-teal-700">
+                                                <i class="fas fa-user mr-2"></i> 오인제
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 pt-6 border-t border-gray-100">
+                                    <div class="flex items-center justify-between">
+                                        <div class="text-sm text-gray-500">
+                                            <i class="fas fa-info-circle mr-1"></i> 맛있는 커피와 함께하는 문화 탐험
+                                        </div>
+                                        <div class="text-teal-600">
+                                            <i class="fas fa-mug-hot text-3xl"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Event 2: 외롭지않은 경영자 행복학교 -->
+                        <div class="event-card w-1/2">
+                            <div class="event-header bg-gradient-to-r from-blue-500 to-indigo-500">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-2xl font-bold event-title text-indigo-900">외롭지않은 경영자 행복학교</h2>
+                                    <div class="text-5xl">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="info-item">
+                                    <div class="info-icon bg-blue-100">
+                                        <i class="far fa-calendar-alt text-2xl text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">일시</h3>
+                                        <p class="text-gray-600">2025년 5월 31일(토)</p>
+                                        <p class="text-blue-700 font-medium">14:00 - 18:00</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon bg-blue-100">
+                                        <i class="fas fa-map-marker-alt text-2xl text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">장소</h3>
+                                        <p class="text-gray-600">서대문 행복이룸센터</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon bg-blue-100">
+                                        <i class="fas fa-laptop text-2xl text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">내용</h3>
+                                        <p class="text-gray-600 mb-2">경영자의 창업스토리 발표</p>
+                                        <p class="text-gray-600 mb-2">협업 프로젝트 기획</p>
+                                        <div class="mt-2 bg-indigo-50 p-3 rounded-lg">
+                                            <p class="text-indigo-700 font-medium">
+                                                <i class="fas fa-lightbulb mr-2"></i>온톨로지 방식을 적용한 문제해결 솔루션
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 pt-6 border-t border-gray-100">
+                                    <div class="flex items-center justify-between">
+                                        <div class="text-sm text-gray-500">
+                                            <i class="fas fa-info-circle mr-1"></i> 5월 지식놀이터와 함께 진행됩니다
+                                        </div>
+                                        <div class="text-blue-600">
+                                            <i class="fas fa-users text-3xl"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom section -->
+                    <div class="mt-10 flex flex-col items-center z-10">
+                        <p class="text-gray-600 mb-4 text-center">프로그램에 관심이 있으시면 지식플랫폼협동조합으로 연락주세요</p>
+                        <div class="flex items-center space-x-6">
+                            <a href="#" class="flex items-center text-gray-700 hover:text-blue-500 transition">
+                                <i class="fas fa-envelope text-xl mr-2"></i>
+                                <span>이메일로 문의</span>
+                            </a>
+                            <a href="#" class="flex items-center text-gray-700 hover:text-blue-500 transition">
+                                <i class="fas fa-phone text-xl mr-2"></i>
+                                <span>전화로 문의</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer -->
+                    <div class="mt-auto w-full text-center pt-8 z-10">
+                        <p class="text-gray-500">건강하시고 5월에 진행되는 모임에서 뵙겠습니다 <span class="text-blue-500">^^</span></p>
+                        <p class="text-gray-400 text-sm mt-2">지식플랫폼협동조합 드림</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation buttons -->
+        <div class="navigation">
+            <div class="nav-btn prev-btn" onclick="changeSlide(-1)">
+                <i class="fas fa-angle-left"></i>
+            </div>
+            <div class="nav-btn next-btn" onclick="changeSlide(1)">
+                <i class="fas fa-angle-right"></i>
+            </div>
+        </div>
+        
+        <!-- Navigation dots -->
+        <div class="nav-dots">
+            <div class="dot active" onclick="goToSlide(0)"></div>
+            <div class="dot" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+            <div class="dot" onclick="goToSlide(3)"></div>
+            <div class="dot" onclick="goToSlide(4)"></div>
+            <div class="dot" onclick="goToSlide(5)"></div>
+        </div>
+    </div>
+
+    <script>
+        // Rain animation for slide 2
+        document.addEventListener('DOMContentLoaded', function() {
+            const rainContainer = document.querySelector('.rain-container');
+            if (rainContainer) {
+                for(let i = 0; i < 35; i++) {
+                    const drop = document.createElement('div');
+                    drop.className = 'rain';
+                    drop.style.left = Math.random() * 1080 + 'px';
+                    drop.style.opacity = Math.random() * 0.4 + 0.3;
+                    drop.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+                    drop.style.animationDelay = (Math.random() * 2) + 's';
+                    rainContainer.appendChild(drop);
+                }
+            }
+        });
+
+        // Slideshow functionality
+        let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = 6; // Total number of slides
+        const dots = document.querySelectorAll('.dot');
+        
+        // Function to update the slides position
+        function updateSlidePosition() {
+            slides.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+            
+            // Update active dot
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // Function to change slide
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateSlidePosition();
+        }
+        
+        // Function to go to a specific slide
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlidePosition();
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+        
+        // Swipe Navigation for touch devices
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum distance required for a swipe
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe left - next slide
+                changeSlide(1);
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe right - previous slide
+                changeSlide(-1);
+            }
+        }
+    </script>
+</body>
+</html>
