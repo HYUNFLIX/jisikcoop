@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4월 리뷰 - 지식놀이터</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1080px;
+            min-height: 1080px;
+            position: relative;
+            background-color: #f0f9ff;
+            overflow: hidden;
+        }
+        .card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            overflow: hidden;
+        }
+        .blue-card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            color: white;
+            overflow: hidden;
+        }
+        .yellow-tag {
+            background-color: #fef3c7;
+            color: #92400e;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .blue-tag {
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .green-tag {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .arrow-connector {
+            position: relative;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .arrow-connector::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: #bfdbfe;
+            z-index: 0;
+        }
+        .circle-bg {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.08);
+            z-index: 0;
+        }
+        .page-title {
+            display: flex;
+            align-items: center;
+        }
+        .page-number {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1;
+            padding-right: 12px;
+            border-right: 3px solid #2563eb;
+        }
+        .page-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin-left: 12px;
+        }
+        .total-pages {
+            font-size: 1rem;
+            color: #64748b;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col items-center justify-start p-16 relative">
+        <!-- Decorative circles -->
+        <div class="circle-bg" style="width: 550px; height: 550px; bottom: -250px; right: -250px;"></div>
+        <div class="circle-bg" style="width: 350px; height: 350px; top: -180px; left: -150px;"></div>
+        
+        <!-- Modified Page indicator -->
+        <div class="absolute top-14 left-16 page-title">
+            <div class="page-number">04</div>
+            <div class="page-text">4월 리뷰 지식놀이터</div>
+            <div class="total-pages">/06</div>
+        </div>
+        
+        <!-- Header section -->
+        <div class="w-full flex items-center mb-12">
+            <div class="bg-blue-500 h-16 w-2 mr-6"></div>
+            <div>
+                <h2 class="text-gray-500 text-xl font-medium mb-1">4월 리뷰</h2>
+                <h1 class="text-4xl font-bold text-gray-800">4월 지식놀이터</h1>
+            </div>
+        </div>
+        
+        <!-- Main content -->
+        <div class="w-full flex flex-col z-10">
+            <!-- April Event Card -->
+            <div class="card p-8 mb-10">
+                <div class="flex justify-between items-start">
+                    <!-- Left side - Event details -->
+                    <div class="flex-grow">
+                        <div class="yellow-tag inline-block mb-4">
+                            <i class="far fa-calendar-alt mr-1"></i> 4월 개최
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">4월 지식놀이터 진행</h3>
+                        
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="far fa-clock text-xl text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">일시</h4>
+                                    <p class="text-gray-600">2025년 4/26(토)</p>
+                                    <p class="text-gray-600">14:00-18:00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-xl text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">장소</h4>
+                                    <p class="text-gray-600">서대문행복이룸센터</p>
+                                    <p class="text-gray-500 text-sm">(서대문문화체육회관 지하1층)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-users text-xl text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">참석자</h4>
+                                    <p class="text-gray-600">15명 내외</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-book-reader text-xl text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">내용</h4>
+                                    <p class="text-gray-600">참석자 근황 토크</p>
+                                    <p class="text-gray-600">주제강연(온톨로지)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right side - Icon illustration -->
+                    <div class="ml-8 flex-shrink-0">
+                        <div class="w-36 h-36 bg-blue-50 rounded-full flex items-center justify-center">
+                            <div class="text-6xl text-blue-400">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expansion direction -->
+            <div class="blue-card p-8">
+                <div class="flex justify-between items-start">
+                    <div class="flex-grow">
+                        <div class="yellow-tag inline-block mb-4 bg-white text-blue-700">
+                            <i class="fas fa-arrow-right mr-1"></i> 5월부터의 변화
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-white mb-6">지식놀이터 운영 방향</h3>
+                        
+                        <div class="flex items-start space-x-8 mb-8">
+                            <div class="flex-1 bg-white bg-opacity-20 rounded-lg p-5">
+                                <div class="text-4xl mb-3">
+                                    <i class="far fa-calendar-alt"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">일정</h4>
+                                <p>매월 마지막 토요일<br>14:00-18:00</p>
+                            </div>
+                            
+                            <div class="flex-1 bg-white bg-opacity-20 rounded-lg p-5">
+                                <div class="text-4xl mb-3">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">참여 확대</h4>
+                                <p>지식플랫폼협동조합과<br>외부 단체/기관 협업</p>
+                            </div>
+                            
+                            <div class="flex-1 bg-white bg-opacity-20 rounded-lg p-5">
+                                <div class="text-4xl mb-3">
+                                    <i class="fas fa-expand-arrows-alt"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">목표</h4>
+                                <p>지식놀이터 규모 확대<br>참여자 다양화</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white bg-opacity-10 rounded-lg p-6 flex items-center">
+                            <div class="flex-shrink-0 text-5xl mr-6">
+                                <i class="far fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">5월 첫 시행</h4>
+                                <p class="text-blue-50">5월 31일(토) - 외롭지 않은 경영자행복학교 프로그램과 병행</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

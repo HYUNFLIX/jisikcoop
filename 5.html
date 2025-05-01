@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5월 일정 - 행복이룸센터 프로그램 안내</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .slide-container {
+            width: 1080px;
+            min-height: 1080px;
+            position: relative;
+            background-color: #f8fafc;
+            overflow: hidden;
+        }
+        .program-card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background-color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        .card-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+        }
+        .icon-bg {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .circle-bg {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            opacity: 0.6;
+            filter: blur(40px);
+        }
+        .page-title {
+            display: flex;
+            align-items: center;
+        }
+        .page-number {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1;
+            padding-right: 12px;
+            border-right: 3px solid #2563eb;
+        }
+        .page-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin-left: 12px;
+        }
+        .total-pages {
+            font-size: 1rem;
+            color: #64748b;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col items-center justify-start p-16 relative">
+        <!-- Decorative elements -->
+        <div class="circle-bg bg-green-200" style="width: 400px; height: 400px; top: -200px; right: -100px;"></div>
+        <div class="circle-bg bg-blue-200" style="width: 350px; height: 350px; bottom: -150px; left: -150px;"></div>
+        <div class="circle-bg bg-yellow-200" style="width: 300px; height: 300px; bottom: 200px; right: 100px;"></div>
+        
+        <!-- Modified Page indicator -->
+        <div class="absolute top-14 left-16 page-title">
+            <div class="page-number">05</div>
+            <div class="page-text">5월 일정 프로그램</div>
+            <div class="total-pages">/06</div>
+        </div>
+        
+        <!-- Header section -->
+        <div class="w-full flex items-center mb-10 z-10">
+            <div class="bg-green-500 h-16 w-2 mr-6"></div>
+            <div>
+                <h2 class="text-gray-500 text-xl font-medium mb-1">5월 일정</h2>
+                <h1 class="text-4xl font-bold text-gray-800">행복이룸센터 프로그램 안내</h1>
+            </div>
+        </div>
+        
+        <!-- Programs introduction -->
+        <div class="w-full text-center mb-8 z-10">
+            <div class="inline-block bg-green-50 text-green-700 px-4 py-2 rounded-full text-lg font-medium">
+                <i class="far fa-calendar-alt mr-2"></i>2025년 주요 프로그램
+            </div>
+        </div>
+        
+        <!-- Programs grid -->
+        <div class="grid grid-cols-2 gap-6 w-full z-10">
+            <!-- Program 1 -->
+            <div class="program-card p-6">
+                <div class="card-accent bg-blue-500"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mr-6">
+                        <div class="icon-bg bg-blue-100">
+                            <i class="fas fa-briefcase text-3xl text-blue-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">외롭지 않은 경영자 행복학교</h3>
+                        <p class="text-gray-600">경영자의 창업스토리 발표, 협업 프로젝트 기획 및 온톨로지 방식을 적용한 문제해결 솔루션</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="text-blue-500 mr-3"><i class="far fa-calendar"></i></div>
+                            <div class="text-gray-500">5/31(토) 14:00-18:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Program 2 -->
+            <div class="program-card p-6">
+                <div class="card-accent bg-green-500"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mr-6">
+                        <div class="icon-bg bg-green-100">
+                            <i class="fas fa-globe-americas text-3xl text-green-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">세계 식탁 여행 & 지구학교</h3>
+                        <p class="text-gray-600">커피벨트를 통한 세계 경제/문화 탐방 및 핸드드립 체험</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="text-green-500 mr-3"><i class="far fa-calendar"></i></div>
+                            <div class="text-gray-500">5/23(금) 18:00-21:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Program 3 -->
+            <div class="program-card p-6">
+                <div class="card-accent bg-purple-500"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mr-6">
+                        <div class="icon-bg bg-purple-100">
+                            <i class="fas fa-book-reader text-3xl text-purple-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">휴먼라이브러리 [해피니스]</h3>
+                        <p class="text-gray-600">사람이 책이 되어 자신의 경험과 이야기를 나누는 대화형 프로그램</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="text-purple-500 mr-3"><i class="fas fa-users"></i></div>
+                            <div class="text-gray-500">정기 운영</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Program 4 -->
+            <div class="program-card p-6">
+                <div class="card-accent bg-yellow-500"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mr-6">
+                        <div class="icon-bg bg-yellow-100">
+                            <i class="fas fa-seedling text-3xl text-yellow-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">캐릭터 기반 환경교육 및 전시</h3>
+                        <p class="text-gray-600">친근한 캐릭터를 활용한 환경 교육 프로그램과 관련 작품 전시</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="text-yellow-500 mr-3"><i class="fas fa-image"></i></div>
+                            <div class="text-gray-500">상시 전시 및 교육</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Program 5 -->
+            <div class="program-card p-6 col-span-2">
+                <div class="card-accent bg-red-500"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mr-6">
+                        <div class="icon-bg bg-red-100">
+                            <i class="fas fa-book text-3xl text-red-500"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">독서모임 [독서놀이터]</h3>
+                        <p class="text-gray-600">다양한 책을 함께 읽고 토론하며 생각을 나누는 소통형 독서 모임</p>
+                        <div class="mt-4 flex items-center">
+                            <div class="text-red-500 mr-3"><i class="far fa-comments"></i></div>
+                            <div class="text-gray-500">정기 운영</div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 ml-6">
+                        <div class="text-5xl text-red-200">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA section -->
+        <div class="mt-12 text-center z-10">
+            <p class="text-gray-600 mb-4">프로그램에 참여하시면 다양한 경험과 지식을 얻을 수 있습니다</p>
+            <div class="inline-block bg-green-500 text-white px-6 py-3 rounded-full font-medium">
+                5월 상세 일정은 다음 페이지를 확인하세요 <i class="fas fa-arrow-right ml-2"></i>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
