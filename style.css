@@ -509,3 +509,94 @@ body {
     background-color: rgba(255, 255, 255, 0.9); /* 배경 더 불투명하게 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
 }
+/* Spring animation for slide 2 (4월 뉴스레터용) */
+.spring-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.flower {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #FFB7C5; /* 벚꽃 색상 */
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 183, 197, 0.7);
+    animation: fall linear infinite, sway ease-in-out infinite alternate;
+    opacity: 0.7;
+}
+
+.flower::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: -3px -3px 0 #FFF inset, 3px 3px 0 rgba(255, 183, 197, 0.5) inset;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(1000px);
+    }
+}
+
+@keyframes sway {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    100% {
+        transform: translateX(50px) rotate(360deg);
+    }
+}
+
+/* Spring themes for 4월 뉴스레터 */
+#slide-1 .slide-content {
+    background: linear-gradient(135deg, #f8fafc 0%, #FFEFEF 100%); /* 연한 핑크빛 그라데이션 */
+}
+
+#slide-2 .slide-content {
+    background-color: #FDFBF7; /* 연한 크림색 배경 */
+}
+
+/* 슬라이드 2 계절 아이콘 강조 */
+#slide-2 .fas.fa-sun {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 슬라이드 2 잎 아이콘 강조 */
+#slide-2 .fas.fa-leaf {
+    animation: wave 3s infinite ease-in-out;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+}
