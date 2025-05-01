@@ -255,11 +255,19 @@ body {
     position: absolute;
     border-radius: 50%;
     background: rgba(59, 130, 246, 0.1);
+    z-index: 1; /* 페이지 인디케이터보다 낮은 z-index */
 }
 
+/* 페이지 인디케이터 스타일 수정 - 텍스트 겹침 문제 해결 */
 .page-title {
     display: flex;
     align-items: center;
+    position: relative; /* 위치 기준 설정 */
+    z-index: 10; /* 다른 요소 위에 표시되도록 z-index 추가 */
+    background: rgba(240, 249, 255, 0.8); /* 배경색 추가로 겹침 방지 */
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
 }
 
 .page-number {
@@ -269,6 +277,8 @@ body {
     line-height: 1;
     padding-right: 12px;
     border-right: 3px solid #2563eb;
+    min-width: 40px; /* 최소 너비 지정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
 }
 
 .page-text {
@@ -276,12 +286,32 @@ body {
     font-size: 1.2rem;
     color: #1e40af;
     margin-left: 12px;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
 }
 
 .total-pages {
     font-size: 1rem;
     color: #64748b;
     margin-left: 6px;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+/* 헤더 섹션 조정 - 페이지 인디케이터와 겹치지 않도록 */
+#slide-3 .w-full.flex.items-center.mb-12,
+#slide-4 .w-full.flex.items-center.mb-12,
+#slide-5 .w-full.flex.items-center.mb-10,
+#slide-6 .w-full.flex.items-center.mb-8 {
+    margin-top: 60px; /* 페이지 인디케이터 아래로 이동 */
+}
+
+/* 슬라이드 3의 페이지 인디케이터 위치 조정 */
+#slide-3 .page-title,
+#slide-4 .page-title,
+#slide-5 .page-title,
+#slide-6 .page-title {
+    position: absolute;
+    top: 14px;
+    left: 16px;
 }
 
 /* Slide 4 styles */
@@ -408,6 +438,7 @@ body {
     position: absolute;
     border-radius: 50%;
     opacity: 0.1;
+    z-index: 1; /* 페이지 인디케이터보다 낮은 z-index */
 }
 
 /* 모바일 최적화 (추가) */
@@ -429,5 +460,28 @@ body {
     
     #slide-6 .event-card {
         width: 100% !important;
+    }
+
+    /* 모바일에서 페이지 인디케이터 조정 */
+    .page-title {
+        padding: 3px 6px;
+        max-width: calc(100% - 20px);
+    }
+
+    .page-number {
+        font-size: 1.5rem;
+        padding-right: 8px;
+    }
+
+    .page-text {
+        font-size: 0.9rem;
+    }
+
+    /* 모바일에서 헤더 조정 */
+    #slide-3 .w-full.flex.items-center.mb-12,
+    #slide-4 .w-full.flex.items-center.mb-12,
+    #slide-5 .w-full.flex.items-center.mb-10,
+    #slide-6 .w-full.flex.items-center.mb-8 {
+        margin-top: 40px; /* 모바일에서는 상단 여백 줄임 */
     }
 }
