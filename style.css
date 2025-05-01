@@ -35,8 +35,19 @@ body {
     max-width: 90vw;
     max-height: 90vh;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
     position: relative;
+    /* 수정: overflow-y를 auto로 변경하여 필요시 스크롤 가능하게 함 */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* 긴 콘텐츠를 가진 슬라이드를 위한 조정 */
+#slide-4 .slide-content,
+#slide-5 .slide-content,
+#slide-6 .slide-content {
+    height: auto; /* 높이를 자동으로 조정 */
+    min-height: 80vh; /* 최소 높이 지정 */
+    padding-bottom: 80px; /* 네비게이션 버튼을 가리지 않도록 하단 패딩 추가 */
 }
 
 /* Slide backgrounds */
@@ -392,9 +403,31 @@ body {
     display: inline-block;
 }
 
-/* Circle decorations for slide 6 */
+/* Circle decorations for slide 6 - 일관성을 위해 circle-bg로 변경 */
 .circle-decoration {
     position: absolute;
     border-radius: 50%;
     opacity: 0.1;
+}
+
+/* 모바일 최적화 (추가) */
+@media (max-width: 768px) {
+    .slide-content {
+        padding: 10px;
+    }
+    
+    #slide-4 .grid-cols-2,
+    #slide-5 .grid-cols-2 {
+        grid-template-columns: 1fr; /* 모바일에서는 그리드를 1열로 변경 */
+    }
+    
+    #slide-6 .flex.space-x-8 {
+        flex-direction: column; /* 모바일에서는 세로 방향으로 변경 */
+        space-x-0: 0;
+        gap: 20px;
+    }
+    
+    #slide-6 .event-card {
+        width: 100% !important;
+    }
 }
