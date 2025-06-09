@@ -7,7 +7,81 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index-styles.css">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .newsletter-card {
+            display: block;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+        }
+
+        .newsletter-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .calendar-icon {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-icon .month {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 4px;
+        }
+
+        .calendar-icon .year {
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        .gradient-june {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+        }
+
+        .gradient-may {
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        }
+
+        .gradient-april {
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+        }
+
+        .latest-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans min-h-screen">
     <div class="container mx-auto px-4 py-8">
@@ -45,28 +119,42 @@
                 <button class="py-2 px-6 font-medium text-blue-600 border-b-2 border-blue-500 focus:outline-none">
                     2025년
                 </button>
-                <button class="py-2 px-6 font-medium text-gray-500 hover:text-gray-700 focus:outline-none">
-                    2024년
-                </button>
-                <button class="py-2 px-6 font-medium text-gray-500 hover:text-gray-700 focus:outline-none">
-                    2023년
-                </button>
             </div>
         </div>
 
         <!-- 월별 레터 목록 -->
         <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 2025년 6월 레터 (최신호) -->
+            <a href="2506.html" class="newsletter-card">
+                <div class="relative overflow-hidden rounded-t-lg">
+                    <div class="h-40 gradient-june flex items-center justify-center">
+                        <div class="calendar-icon">
+                            <div class="month">6월</div>
+                            <div class="year">2025</div>
+                        </div>
+                    </div>
+                    <div class="absolute top-4 left-4 latest-badge rounded-full px-3 py-1 text-sm font-medium text-white shadow">
+                        최신호
+                    </div>
+                </div>
+                <div class="p-6 bg-white rounded-b-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">6월 조합원레터</h3>
+                    <p class="text-gray-600 mb-4">여름 프로그램과 상반기 활동 리뷰, 하반기 계획 안내</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="far fa-calendar-alt mr-2"></i>
+                        <span>발행일: 2025년 6월 1일</span>
+                    </div>
+                </div>
+            </a>
+
             <!-- 2025년 5월 레터 -->
             <a href="2505.html" class="newsletter-card">
                 <div class="relative overflow-hidden rounded-t-lg">
-                    <div class="h-40 bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+                    <div class="h-40 gradient-may flex items-center justify-center">
                         <div class="calendar-icon">
                             <div class="month">5월</div>
                             <div class="year">2025</div>
                         </div>
-                    </div>
-                    <div class="absolute top-4 left-4 bg-white rounded-full px-3 py-1 text-sm font-medium text-blue-600 shadow">
-                        최신호
                     </div>
                 </div>
                 <div class="p-6 bg-white rounded-b-lg">
@@ -79,94 +167,25 @@
                 </div>
             </a>
 
-<a href="2504.html" class="newsletter-card">
-    <div class="relative overflow-hidden rounded-t-lg">
-        <div class="h-40 bg-gradient-to-r from-green-300 to-blue-500 flex items-center justify-center">
-            <div class="calendar-icon">
-                <div class="month">4월</div>
-                <div class="year">2025</div>
-            </div>
-        </div>
-    </div>
-    <div class="p-6 bg-white rounded-b-lg">
-        <h3 class="text-xl font-bold text-gray-800 mb-2">4월 조합원레터</h3>
-        <p class="text-gray-600 mb-4">행복이룸센터 계약 및 공간 활용 계획</p>
-        <div class="flex items-center text-sm text-gray-500">
-            <i class="far fa-calendar-alt mr-2"></i>
-            <span>발행일: 2025년 4월 1일</span>
-        </div>
-    </div>
-</a>
-
-            <!-- 2025년 3월 레터 (예정) -->
-            <a href="#" class="newsletter-card opacity-70">
+            <!-- 2025년 4월 레터 -->
+            <a href="2504.html" class="newsletter-card">
                 <div class="relative overflow-hidden rounded-t-lg">
-                    <div class="h-40 bg-gradient-to-r from-blue-300 to-blue-500 flex items-center justify-center">
+                    <div class="h-40 gradient-april flex items-center justify-center">
                         <div class="calendar-icon">
-                            <div class="month">3월</div>
+                            <div class="month">4월</div>
                             <div class="year">2025</div>
                         </div>
                     </div>
                 </div>
                 <div class="p-6 bg-white rounded-b-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">3월 조합원레터</h3>
-                    <p class="text-gray-600 mb-4">2월 활동 리뷰 및 봄맞이 프로그램 안내</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">4월 조합원레터</h3>
+                    <p class="text-gray-600 mb-4">행복이룸센터 계약 및 공간 활용 계획</p>
                     <div class="flex items-center text-sm text-gray-500">
                         <i class="far fa-calendar-alt mr-2"></i>
-                        <span>발행일: 2025년 3월 1일</span>
+                        <span>발행일: 2025년 4월 1일</span>
                     </div>
                 </div>
             </a>
-
-            <!-- 2025년 2월 레터 (예정) -->
-            <a href="#" class="newsletter-card opacity-70">
-                <div class="relative overflow-hidden rounded-t-lg">
-                    <div class="h-40 bg-gradient-to-r from-blue-300 to-blue-500 flex items-center justify-center">
-                        <div class="calendar-icon">
-                            <div class="month">2월</div>
-                            <div class="year">2025</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6 bg-white rounded-b-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">2월 조합원레터</h3>
-                    <p class="text-gray-600 mb-4">1월 활동 리뷰 및 새해 계획 안내</p>
-                    <div class="flex items-center text-sm text-gray-500">
-                        <i class="far fa-calendar-alt mr-2"></i>
-                        <span>발행일: 2025년 2월 1일</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- 2025년 1월 레터 (예정) -->
-            <a href="#" class="newsletter-card opacity-70">
-                <div class="relative overflow-hidden rounded-t-lg">
-                    <div class="h-40 bg-gradient-to-r from-blue-300 to-blue-500 flex items-center justify-center">
-                        <div class="calendar-icon">
-                            <div class="month">1월</div>
-                            <div class="year">2025</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6 bg-white rounded-b-lg">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">1월 조합원레터</h3>
-                    <p class="text-gray-600 mb-4">2024년 마무리 및 2025년 신년계획</p>
-                    <div class="flex items-center text-sm text-gray-500">
-                        <i class="far fa-calendar-alt mr-2"></i>
-                        <span>발행일: 2025년 1월 1일</span>
-                    </div>
-                </div>
-            </a>
-
-            <!-- 더 많은 레터 버튼 -->
-            <div class="newsletter-card flex items-center justify-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transition">
-                <div class="text-center p-6">
-                    <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-ellipsis-h text-gray-500 text-xl"></i>
-                    </div>
-                    <p class="text-gray-600 font-medium">다른 연도 보기</p>
-                </div>
-            </div>
         </div>
 
         <!-- 구독 안내 -->
@@ -215,6 +234,20 @@
         </footer>
     </div>
 
-    <script src="index-script.js"></script>
+    <script>
+        // 간단한 인터랙션 개선
+        document.addEventListener('DOMContentLoaded', function() {
+            // 카드 호버 효과 강화
+            const cards = document.querySelectorAll('.newsletter-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
