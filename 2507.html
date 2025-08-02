@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>조합원레터(2025.7월)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .slider-container {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides {
+            display: flex;
+            width: 600%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            width: 16.6666%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-content {
+            width: 1080px;
+            height: 1080px;
+            max-width: 90vw;
+            max-height: 90vh;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* 긴 콘텐츠를 가진 슬라이드를 위한 조정 */
+        #slide-4 .slide-content,
+        #slide-5 .slide-content,
+        #slide-6 .slide-content {
+            height: auto;
+            min-height: 80vh;
+            padding-bottom: 80px;
+        }
+
+        /* Slide backgrounds */
+        #slide-1 .slide-content {
+            background: linear-gradient(135deg, #fef3e2 0%, #fed7aa 100%);
+        }
+
+        #slide-2 .slide-content {
+            background-color: #fefbf7;
+        }
+
+        #slide-3 .slide-content {
+            background-color: #fff7ed;
+        }
+
+        #slide-4 .slide-content {
+            background-color: #fff7ed;
+        }
+
+        #slide-5 .slide-content {
+            background-color: #fefcfb;
+        }
+
+        #slide-6 .slide-content {
+            background-color: #fefcfb;
+        }
+
+        /* Navigation elements */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(59, 130, 246, 0.9);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(37, 99, 235, 1);
+            transform: translateY(-2px);
+        }
+
+        .nav-dots {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(203, 213, 225, 0.8);
+            margin: 0 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: rgba(59, 130, 246, 0.9);
+            transform: scale(1.2);
+        }
+
+        /* Slide 1 styles */
+        .calendar-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 180px;
+            height: 180px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(5deg);
+        }
+
+        .month {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ea580c;
+            margin-bottom: 10px;
+        }
+
+        .year {
+            font-size: 22px;
+            color: #64748b;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(234, 88, 12, 0.15);
+        }
+
+        .title-highlight {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(234, 88, 12, 0.3) 60%);
+            padding: 0 15px;
+        }
+
+        /* Summer animation for slide 2 */
+        .summer-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heat-wave {
+            position: absolute;
+            width: 6px;
+            height: 60px;
+            background: linear-gradient(to top, rgba(251, 146, 60, 0.8), rgba(251, 146, 60, 0));
+            animation: heatWave 4s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        @keyframes heatWave {
+            0%, 100% { opacity: 0.2; transform: scaleY(1) translateY(0px); }
+            50% { opacity: 0.8; transform: scaleY(1.3) translateY(-10px); }
+        }
+
+        .highlight {
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(234, 88, 12, 0.3);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .quote-mark {
+            font-size: 120px;
+            position: absolute;
+            opacity: 0.08;
+            color: #ea580c;
+            font-family: serif;
+            line-height: 0;
+        }
+
+        /* Card styles */
+        .card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: #ea580c;
+        }
+
+        .activity-card {
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            background-color: white;
+            border-left: 4px solid #ea580c;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .page-indicator {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            color: #ea580c;
+            font-size: 1.1rem;
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        .circle-bg {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(234, 88, 12, 0.1);
+            z-index: 1;
+        }
+
+        /* Program card styles */
+        .program-card {
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background-color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+        }
+
+        .icon-bg {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .date-badge {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Event card styles */
+        .event-card {
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .event-header {
+            padding: 20px 30px;
+            color: white;
+        }
+
+        .event-content {
+            padding: 30px;
+            background-color: white;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .event-title {
+            padding: 5px 12px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: inline-block;
+            color: #1e3a8a;
+            font-weight: 700;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .slide-content {
+                width: 100%;
+                max-width: 100%;
+                padding: 16px;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .nav-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .nav-dots .dot {
+                width: 16px;
+                height: 16px;
+                margin: 0 8px;
+            }
+            
+            .page-indicator {
+                background: rgba(255, 255, 255, 0.95);
+                padding: 6px 12px;
+                border-radius: 20px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                font-size: 0.85rem;
+                top: 20px !important;
+                right: 20px !important;
+            }
+
+            #slide-1 .text-7xl {
+                font-size: 3.5rem;
+            }
+            
+            #slide-1 .text-3xl {
+                font-size: 1.5rem;
+            }
+            
+            #slide-1 .calendar-icon {
+                width: 120px;
+                height: 120px;
+                top: 10px;
+                right: 10px;
+            }
+            
+            .grid.grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid.grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .flex.space-x-8 {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slides" id="slides">
+            <!-- Slide 1: 커버 -->
+            <div class="slide" id="slide-1">
+                <div class="slide-content flex flex-col items-center justify-center relative">
+                    <!-- Decorative elements -->
+                    <div class="decorative-circle" style="width: 300px; height: 300px; left: -100px; top: 200px; opacity: 0.4;"></div>
+                    <div class="decorative-circle" style="width: 200px; height: 200px; right: -50px; bottom: 150px; opacity: 0.3;"></div>
+                    <div class="decorative-circle" style="width: 500px; height: 500px; left: 400px; top: -250px; opacity: 0.2;"></div>
+                    
+                    <!-- Calendar icon -->
+                    <div class="calendar-icon">
+                        <div class="month">7월</div>
+                        <div class="year">2025</div>
+                        <div class="mt-2 text-5xl text-orange-500">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Small building icon -->
+                    <div class="absolute bottom-12 right-20 text-8xl text-orange-500 opacity-20">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    
+                    <!-- Main Content -->
+                    <div class="text-center px-8 z-10">
+                        <div class="mb-6 flex items-center justify-center">
+                            <div class="w-20 h-1 bg-orange-500 rounded mr-4"></div>
+                            <div class="text-orange-600 font-medium text-xl">MONTHLY NEWSLETTER</div>
+                            <div class="w-20 h-1 bg-orange-500 rounded ml-4"></div>
+                        </div>
+                        
+                        <h1 class="text-7xl font-black text-gray-800 mb-6">
+                            <span class="title-highlight">조합원레터</span>
+                        </h1>
+                        
+                        <div class="text-3xl font-medium text-gray-600 mb-12">
+                            지식플랫폼협동조합 소식지
+                        </div>
+                        
+                        <div class="flex items-center justify-center mb-16">
+                            <div class="bg-white px-8 py-4 rounded-full shadow-lg text-orange-600 text-2xl font-bold">
+                                2025년 7월호
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex items-center justify-center space-x-8">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>서대문 행복이룸센터</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>지식플랫폼협동조합</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2: 인사말 -->
+            <div class="slide" id="slide-2">
+                <div class="slide-content flex flex-col items-center justify-center p-16 relative">
+                    <!-- Summer animation elements -->
+                    <div class="summer-container"></div>
+                    
+                    <!-- Top decorative elements -->
+                    <div class="absolute top-16 right-16 flex items-center">
+                        <div class="text-red-400 text-5xl mr-4">
+                            <i class="fas fa-thermometer-full"></i>
+                        </div>
+                        <div class="text-orange-400 text-5xl">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Page indicator -->
+                    <div class="absolute top-14 left-16 flex items-center">
+                        <div class="text-3xl font-bold text-orange-600">02</div>
+                        <div class="ml-2 text-gray-400">/06</div>
+                    </div>
+
+                    <!-- Main content -->
+                    <div class="text-center mb-12 relative">
+                        <span class="quote-mark" style="top: -80px; left: -40px;">"</span>
+                        <h1 class="text-5xl font-bold text-gray-800 mb-10">안녕하세요</h1>
+                        <div class="text-2xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+                            <p class="mb-6">
+                                <span class="highlight font-medium text-3xl">7월의 첫날</span>입니다.
+                            </p>
+                            <p class="mb-6">
+                                오늘은 52주 기준으로는 27주차입니다. 2025년 시작이후 182일째 날이고 남은 날은 183일입니다. 
+                                <br>하루에서 낮의 길이가 달라지 듯, 이제 내일부터는 남은 날이 더 작아지겠네요. <span class="text-orange-500">^^</span>
+                            </p>
+                            <p class="mt-10 text-xl text-gray-600">
+                                먼저 6월 활동 리뷰와 7월의 일정 공유드립니다.
+                            </p>
+                        </div>
+                        <span class="quote-mark" style="bottom: -80px; right: -40px;">"</span>
+                    </div>
+
+                    <!-- Bottom decorative elements -->
+                    <div class="absolute bottom-0 left-0 w-full h-44 bg-gradient-to-t from-orange-100 to-transparent opacity-50"></div>
+                    
+                    <div class="absolute bottom-16 w-full flex justify-center space-x-16">
+                        <div class="text-center">
+                            <div class="text-5xl text-orange-500 mb-4">
+                                <i class="far fa-calendar-check"></i>
+                            </div>
+                            <div class="text-gray-600 font-medium">6월 리뷰</div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="text-5xl text-orange-500 mb-4">
+                                <i class="far fa-calendar"></i>
+                            </div>
+                            <div class="text-gray-600 font-medium">7월 일정</div>
+                        </div>
+                    </div>
+
+                    <!-- Signature -->
+                    <div class="absolute bottom-10 right-16 text-gray-500 text-lg flex items-center">
+                        <div class="mr-3">김동규 드림</div>
+                        <div class="text-gray-400">(2025.7.1.일)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3: 6월 활동 리뷰 -->
+            <div class="slide" id="slide-3">
+                <div class="slide-content flex flex-col items-center justify-start p-16 relative">
+                    <!-- Decorative circles -->
+                    <div class="circle-bg" style="width: 400px; height: 400px; top: -200px; left: -100px;"></div>
+                    <div class="circle-bg" style="width: 300px; height: 300px; bottom: -100px; right: -100px;"></div>
+                    
+                    <!-- Page indicator -->
+                    <div class="page-indicator" style="top: 80px; right: 120px;">
+                        03 | 6월 활동 리뷰 /06
+                    </div>
+                    
+                    <!-- Header section -->
+                    <div class="w-full flex items-center mb-12">
+                        <div class="bg-orange-500 h-16 w-2 mr-6"></div>
+                        <div>
+                            <h2 class="text-gray-500 text-xl font-medium mb-1">6월 활동 리뷰</h2>
+                            <h1 class="text-4xl font-bold text-gray-800">행복이룸센터 프로그램</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Main content -->
+                    <div class="w-full grid grid-cols-3 gap-6 z-10">
+                        <!-- 센터 프로그램 -->
+                        <div class="activity-card p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-100 rounded-full p-3 mr-4">
+                                    <i class="fas fa-building text-blue-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">5개 프로젝트 시작</h3>
+                            </div>
+                            <p class="text-gray-700">지식쿱이 센터에서 진행하는 5개 프로젝트가 모두 첫걸음을 시작했습니다.</p>
+                        </div>
+                        
+                        <!-- 외경 -->
+                        <div class="activity-card p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-100 rounded-full p-3 mr-4">
+                                    <i class="fas fa-briefcase text-purple-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">외롭지않은 경영자 행복학교</h3>
+                            </div>
+                            <p class="text-gray-700">소상공인의 시간과 인원부족 문제를 AI기술로 풀어보는 프로그램</p>
+                        </div>
+                        
+                        <!-- 커피벨트 -->
+                        <div class="activity-card p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-yellow-100 rounded-full p-3 mr-4">
+                                    <i class="fas fa-coffee text-yellow-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">세계식탁여행 (커피벨트)</h3>
+                            </div>
+                            <p class="text-gray-700">커피를 통해 세계 경제/문화 탐방 및 핸드드립 체험</p>
+                        </div>
+                        
+                        <!-- 환경교육 -->
+                        <div class="activity-card p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-100 rounded-full p-3 mr-4">
+                                    <i class="fas fa-seedling text-green-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">지구환경 기념일 교육</h3>
+                            </div>
+                            <p class="text-gray-700">6/3 세계 자전거의 날, 6/5 세계 환경의 날, 6/17 세계 사막화 방지의 날</p>
+                        </div>
+                        
+                        <!-- 해피니스 -->
+                        <div class="activity-card p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-red-100 rounded-full p-3 mr-4">
+                                    <i class="fas fa-microphone-alt text-red-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">휴먼라이브러리 '해피니스'</h3>
+                            </div>
+                            <p class="text-gray-700">행복을 주제로 일상의 이야기를 담아보는 팟캐스트 진행</p>
+                        </div>
+                        
+                        <!-- 공유서가 -->
+                        <div class="activity-card p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-indigo-100 rounded-full p-3 mr-4">
+                                    <i class="fas fa-book-open text-indigo-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800">공유서가 지.식.정.원</h3>
+                            </div>
+                            <p class="text-gray-700">라이프 크리에이터들의 소장 도서로 채워지는 공유서가</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom section -->
+                    <div class="mt-10 w-full flex justify-end">
+                        <div class="bg-orange-100 py-3 px-6 rounded-lg flex items-center">
+                            <i class="fas fa-arrow-right text-orange-500 mr-2"></i>
+                            <span class="text-orange-700">다음 페이지에서 6월 커피벨트 상세 내용을 확인하세요</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 4: 6월 커피벨트 상세 -->
+            <div class="slide" id="slide-4">
+                <div class="slide-content flex flex-col items-center justify-start p-16 relative">
+                    <!-- Decorative circles -->
+                    <div class="circle-bg" style="width: 550px; height: 550px; bottom: -250px; right: -250px;"></div>
+                    <div class="circle-bg" style="width: 350px; height: 350px; top: -180px; left: -150px;"></div>
+                    
+                    <!-- Page indicator -->
+                    <div class="page-indicator" style="top: 80px; right: 120px;">
+                        04 | 6월 커피벨트 상세 /06
+                    </div>
+                    
+                    <!-- Header section -->
+                    <div class="w-full flex items-center mb-12">
+                        <div class="bg-orange-500 h-16 w-2 mr-6"></div>
+                        <div>
+                            <h2 class="text-gray-500 text-xl font-medium mb-1">6월 세계식탁여행</h2>
+                            <h1 class="text-4xl font-bold text-gray-800">커피벨트와 핸드드립 체험</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Main content -->
+                    <div class="w-full flex flex-col z-10">
+                        <!-- Coffee Belt Information Card -->
+                        <div class="card p-8 mb-10">
+                            <div class="flex justify-between items-start">
+                                <!-- Left side - Coffee belt info -->
+                                <div class="flex-grow">
+                                    <div class="date-badge inline-block mb-4">
+                                        <i class="fas fa-globe-americas mr-1"></i> 커피벨트 탐방
+                                    </div>
+                                    
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-6">커피벨트란?</h3>
+                                    
+                                    <div class="bg-yellow-50 p-5 rounded-lg mb-6">
+                                        <p class="text-gray-700 leading-relaxed">
+                                            커피가 생산되는 적도를 중심으로 위아래로 25도 이내에 속하는 나라들로 아시아, 아프리카, 중남미에 걸쳐 마치 벨트 모양처럼 위치하고 있어 커피벨트로 불립니다.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-2 gap-6">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                                <i class="fas fa-trophy text-xl text-orange-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-700">최대 생산국</h4>
+                                                <p class="text-gray-600">브라질</p>
+                                                <p class="text-gray-500 text-sm">전세계 생산량의 38% 이상</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                                <i class="fas fa-exclamation-triangle text-xl text-orange-600"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-700">기후 영향</h4>
+                                                <p class="text-gray-600">기후변화와 병충해에 취약</p>
+                                                <p class="text-gray-500 text-sm">가뭄이나 폭우 시 공급망 타격</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right side - Icon illustration -->
+                                <div class="ml-8 flex-shrink-0">
+                                    <div class="w-36 h-36 bg-orange-50 rounded-full flex items-center justify-center">
+                                        <div class="text-6xl text-orange-400">
+                                            <i class="fas fa-globe-americas"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hand Drip Experience -->
+                        <div class="bg-gradient-to-r from-orange-500 to-red-500 rounded-lg p-8 text-white">
+                            <div class="flex items-start">
+                                <div class="bg-white bg-opacity-20 rounded-full p-4 mr-6">
+                                    <i class="fas fa-coffee text-3xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-4">핸드드립 실습</h3>
+                                    <p class="text-xl leading-relaxed mb-4">
+                                        "분쇄된 원두의 향기와 참여하는 사람들의 열정이 뜨거웠던 시간이었습니다. 참가자들이 적정한 온도를 맞추기 위해 열측정기로 물의 온도를 측정하고 원두의 양을 계량하고, 일정시간내에 커피를 내리는 일은 관찰하다보면, 커피는 취향이기도 하지만, 과학이기도 하다는 생각이 들었습니다."
+                                    </p>
+                                    <div class="grid grid-cols-3 gap-4 mt-6">
+                                        <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                            <i class="fas fa-thermometer-half text-2xl mb-2"></i>
+                                            <p class="text-sm">온도 측정</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                            <i class="fas fa-balance-scale text-2xl mb-2"></i>
+                                            <p class="text-sm">원두 계량</p>
+                                        </div>
+                                        <div class="bg-white bg-opacity-20 rounded-lg p-3 text-center">
+                                            <i class="fas fa-clock text-2xl mb-2"></i>
+                                            <p class="text-sm">시간 조절</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 5: 7월 일정 개요 -->
+            <div class="slide" id="slide-5">
+                <div class="slide-content flex flex-col items-center justify-start p-16 relative">
+                    <!-- Decorative elements -->
+                    <div class="circle-bg bg-red-200" style="width: 400px; height: 400px; top: -200px; right: -100px;"></div>
+                    <div class="circle-bg bg-yellow-200" style="width: 350px; height: 350px; bottom: -150px; left: -150px;"></div>
+                    <div class="circle-bg bg-orange-200" style="width: 300px; height: 300px; bottom: 200px; right: 100px;"></div>
+                    
+                    <!-- Page indicator -->
+                    <div class="page-indicator" style="top: 80px; right: 120px;">
+                        05 | 7월 일정 프로그램 /06
+                    </div>
+                    
+                    <!-- Header section -->
+                    <div class="w-full flex items-center mb-8 z-10">
+                        <div class="bg-orange-500 h-16 w-2 mr-6"></div>
+                        <div>
+                            <h2 class="text-gray-500 text-xl font-medium mb-1">7월 일정</h2>
+                            <h1 class="text-4xl font-bold text-gray-800">축하와 프로그램 안내</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Congratulations section -->
+                    <div class="w-full z-10 mb-10">
+                        <div class="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg p-6 text-white">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-white bg-opacity-20 rounded-full p-3 mr-4">
+                                    <i class="fas fa-trophy text-2xl"></i>
+                                </div>
+                                <h2 class="text-2xl font-bold">축하 인사</h2>
+                            </div>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                                    <h3 class="font-bold mb-2"><i class="fas fa-graduation-cap mr-2"></i>권현주 교수님</h3>
+                                    <p class="text-sm">7/1(화) 국립금오공대 강의 시작</p>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                                    <h3 class="font-bold mb-2"><i class="fas fa-award mr-2"></i>구영주 본부장님</h3>
+                                    <p class="text-sm">7/3(목) 협동조합의 날 유공자 수상</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Programs grid -->
+                    <div class="grid grid-cols-2 gap-6 w-full z-10">
+                        <!-- Program 1 -->
+                        <div class="program-card p-6">
+                            <div class="card-accent bg-blue-500"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-blue-100">
+                                        <i class="fas fa-briefcase text-3xl text-blue-500"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">외롭지 않은 경영자 행복학교</h3>
+                                    <p class="text-gray-600">AI로 똑똑하게 일손 덜기, AI를 활용한 문제해결 솔루션</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-blue-500 mr-3"><i class="far fa-calendar"></i></div>
+                                        <div class="text-gray-500">7/12(토) 14:00-17:00</div>
+                                    </div>
+                                    <div class="mt-2 flex items-center">
+                                        <div class="text-blue-500 mr-3"><i class="fas fa-user-tie"></i></div>
+                                        <div class="text-gray-500">강사: 송완 대표</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 2 -->
+                        <div class="program-card p-6">
+                            <div class="card-accent bg-yellow-600"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-yellow-100">
+                                        <i class="fas fa-birthday-cake text-3xl text-yellow-600"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">세계 식탁 여행 & 지구학교</h3>
+                                    <p class="text-gray-600">초콜릿을 통해 세계 경제/문화 탐방 및 체험</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-yellow-600 mr-3"><i class="far fa-calendar"></i></div>
+                                        <div class="text-gray-500">7/18(금) 18:00-21:00</div>
+                                    </div>
+                                    <div class="mt-2 flex items-center">
+                                        <div class="text-yellow-600 mr-3"><i class="fas fa-user-tie"></i></div>
+                                        <div class="text-gray-500">강사: 이선경(초콜릿책방 대표)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 3 -->
+                        <div class="program-card p-6">
+                            <div class="card-accent bg-green-500"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-green-100">
+                                        <i class="fas fa-book text-3xl text-green-500"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">지구환경 기념일 교육</h3>
+                                    <p class="text-gray-600">환경교육과 팝업북 만들기</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-green-500 mr-3"><i class="far fa-calendar"></i></div>
+                                        <div class="text-gray-500">7/25(금) 18:00-20:00</div>
+                                    </div>
+                                    <div class="mt-2 flex items-center">
+                                        <div class="text-green-500 mr-3"><i class="fas fa-user-tie"></i></div>
+                                        <div class="text-gray-500">강사: 김은아(재미진동네 대표)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Program 4 -->
+                        <div class="program-card p-6">
+                            <div class="card-accent bg-purple-500"></div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mr-6">
+                                    <div class="icon-bg bg-purple-100">
+                                        <i class="fas fa-umbrella-beach text-3xl text-purple-500"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 mb-2">지식놀이터 휴식</h3>
+                                    <p class="text-gray-600">7월은 여름 휴가기간으로 충전의 시간</p>
+                                    <div class="mt-4 flex items-center">
+                                        <div class="text-purple-500 mr-3"><i class="fas fa-moon"></i></div>
+                                        <div class="text-gray-500">휴식 기간</div>
+                                    </div>
+                                    <div class="mt-2 flex items-center">
+                                        <div class="text-purple-500 mr-3"><i class="fas fa-calendar-check"></i></div>
+                                        <div class="text-gray-500">8/30 '한여름밤의 꿈' 예정</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA section -->
+                    <div class="mt-12 text-center z-10">
+                        <p class="text-gray-600 mb-4">프로그램에 참여하시면 다양한 경험과 지식을 얻을 수 있습니다</p>
+                        <div class="inline-block bg-orange-500 text-white px-6 py-3 rounded-full font-medium">
+                            7월 상세 일정은 다음 페이지를 확인하세요 <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: 7월 프로그램 상세 및 8월 예고 -->
+            <div class="slide" id="slide-6">
+                <div class="slide-content flex flex-col p-16 relative">
+                    <!-- Decorative elements -->
+                    <div class="circle-bg bg-orange-500" style="width: 300px; height: 300px; top: -150px; right: -100px; opacity: 0.1;"></div>
+                    <div class="circle-bg bg-red-500" style="width: 400px; height: 400px; bottom: -200px; left: -150px; opacity: 0.1;"></div>
+                    
+                    <!-- Page indicator -->
+                    <div class="page-indicator" style="top: 80px; right: 120px;">
+                        06 | 7월 상세 & 8월 예고 /06
+                    </div>
+                    
+                    <!-- Header section -->
+                    <div class="w-full flex items-center mb-8 z-10">
+                        <div class="bg-orange-500 h-16 w-2 mr-6"></div>
+                        <div>
+                            <h2 class="text-gray-500 text-xl font-medium mb-1">7월 일정</h2>
+                            <h1 class="text-4xl font-bold text-gray-800">7월 프로그램 상세 안내</h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Programs container -->
+                    <div class="grid grid-cols-2 gap-6 w-full z-10 mb-8">
+                        <!-- Program 1: 초콜릿벨트 -->
+                        <div class="event-card">
+                            <div class="event-header bg-gradient-to-r from-yellow-600 to-orange-600">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-2xl font-bold event-title">세계식탁여행 & 지구학교</h2>
+                                    <div class="text-5xl">
+                                        <i class="fas fa-birthday-cake"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="info-item">
+                                    <div class="info-icon bg-yellow-100">
+                                        <i class="far fa-calendar-alt text-2xl text-yellow-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">일시</h3>
+                                        <p class="text-gray-600">2025년 7월 18일(금)</p>
+                                        <p class="text-yellow-700 font-medium">18:00 - 21:00</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon bg-yellow-100">
+                                        <i class="fas fa-user-tie text-2xl text-yellow-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">강사</h3>
+                                        <p class="text-gray-600">이선경</p>
+                                        <p class="text-gray-500">(초콜릿책방 대표)</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-yellow-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-yellow-800 mb-2">초콜릿벨트 탐방</h4>
+                                    <p class="text-gray-700 text-sm">초콜릿을 통해 세계 경제/문화를 탐방하는 시간입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program 2: 환경교육 -->
+                        <div class="event-card">
+                            <div class="event-header bg-gradient-to-r from-green-500 to-teal-500">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-2xl font-bold event-title">지구환경 기념일 교육</h2>
+                                    <div class="text-5xl">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="info-item">
+                                    <div class="info-icon bg-green-100">
+                                        <i class="far fa-calendar-alt text-2xl text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">일시</h3>
+                                        <p class="text-gray-600">2025년 7월 25일(금)</p>
+                                        <p class="text-green-700 font-medium">18:00 - 20:00</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item">
+                                    <div class="info-icon bg-green-100">
+                                        <i class="fas fa-user-tie text-2xl text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-700">강사</h3>
+                                        <p class="text-gray-600">김은아</p>
+                                        <p class="text-gray-500">(재미진동네 대표)</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-800 mb-2">팝업북 만들기</h4>
+                                    <p class="text-gray-700 text-sm">환경교육과 함께 팝업북을 직접 만들어보는 체험활동이 포함됩니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- August Preview -->
+                    <div class="w-full z-10">
+                        <div class="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg p-8 text-white">
+                            <div class="flex items-center mb-6">
+                                <div class="bg-white bg-opacity-20 rounded-full p-4 mr-6">
+                                    <i class="fas fa-moon text-3xl"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-3xl font-bold">8월 지식놀이터 예고</h2>
+                                    <p class="text-purple-100">'한여름밤의 꿈' 특별 프로그램</p>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                                    <i class="fas fa-walking text-3xl mb-3"></i>
+                                    <h4 class="font-bold mb-2">홍제폭포 산책</h4>
+                                    <p class="text-sm">행복이룸센터 주변 가벼운 산책</p>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                                    <i class="fas fa-mountain text-3xl mb-3"></i>
+                                    <h4 class="font-bold mb-2">백련산 맨발걷기</h4>
+                                    <p class="text-sm">센터 뒤편 백련산에서 맨발걷기</p>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg p-4 text-center">
+                                    <i class="fas fa-film text-3xl mb-3"></i>
+                                    <h4 class="font-bold mb-2">영화 & 커피</h4>
+                                    <p class="text-sm">넷플릭스 영화보기, 커피와 와인</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 bg-white bg-opacity-20 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar-check text-2xl mr-3"></i>
+                                    <div>
+                                        <h4 class="font-bold">8월 30일 (토)</h4>
+                                        <p class="text-sm">세부 계획은 추후 안내드리겠습니다</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom section -->
+                    <div class="mt-10 flex flex-col items-center z-10">
+                        <p class="text-gray-600 mb-4 text-center">행복이룸센터에 오시면, 공간투어와 함께 스페셜티 커피와 음악, 그리고 공유서가 지.식.정.원에서 다양한 책들을 만나볼 수 있습니다.</p>
+                    </div>
+                    
+                    <!-- Footer -->
+                    <div class="mt-auto w-full text-center pt-8 z-10">
+                        <p class="text-gray-500">7월에 진행되는 모임에서 뵙겠습니다 <span class="text-orange-500">^^</span></p>
+                        <p class="text-gray-400 text-sm mt-2">지식플랫폼협동조합 드림</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="navigation">
+            <div class="nav-btn prev-btn" onclick="changeSlide(-1)">
+                <i class="fas fa-angle-left"></i>
+            </div>
+            <div class="nav-btn next-btn" onclick="changeSlide(1)">
+                <i class="fas fa-angle-right"></i>
+            </div>
+        </div>
+
+        <!-- Navigation dots -->
+        <div class="nav-dots">
+            <div class="dot active" onclick="goToSlide(0)"></div>
+            <div class="dot" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+            <div class="dot" onclick="goToSlide(3)"></div>
+            <div class="dot" onclick="goToSlide(4)"></div>
+            <div class="dot" onclick="goToSlide(5)"></div>
+        </div>
+    </div>
+
+    <script>
+        // DOM이 로드된 후 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            // 현재 슬라이드 번호와 총 슬라이드 수 초기화
+            let currentSlide = 0;
+            const totalSlides = 6; // 총 슬라이드 수
+            
+            // 슬라이드 엘리먼트와 네비게이션 도트 가져오기
+            const slides = document.getElementById('slides');
+            const dots = document.querySelectorAll('.dot');
+            
+            // 슬라이드 위치 업데이트 함수
+            function updateSlidePosition() {
+                if (slides) {
+                    slides.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+                    
+                    // 활성화된 도트 업데이트
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentSlide);
+                    });
+                }
+            }
+            
+            // 슬라이드 변경 함수 (전역으로 선언하여 HTML에서 onclick으로 접근 가능)
+            window.changeSlide = function(direction) {
+                currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+                updateSlidePosition();
+            };
+            
+            // 특정 슬라이드로 이동하는 함수 (전역으로 선언)
+            window.goToSlide = function(slideIndex) {
+                currentSlide = slideIndex;
+                updateSlidePosition();
+            };
+            
+            // 키보드 네비게이션
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    window.changeSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    window.changeSlide(1);
+                }
+            });
+            
+            // 터치 스와이프 네비게이션을 위한 변수
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            // 터치 이벤트 리스너 등록
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            document.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            // 스와이프 처리 함수
+            function handleSwipe() {
+                const swipeThreshold = 50; // 스와이프로 인식할 최소 거리
+                
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // 왼쪽 스와이프 - 다음 슬라이드
+                    window.changeSlide(1);
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    // 오른쪽 스와이프 - 이전 슬라이드
+                    window.changeSlide(-1);
+                }
+            }
+            
+            // 7월 뉴스레터용 여름 애니메이션
+            const summerContainer = document.querySelector('.summer-container');
+            if (summerContainer) {
+                for(let i = 0; i < 15; i++) {
+                    const wave = document.createElement('div');
+                    wave.className = 'heat-wave';
+                    wave.style.left = Math.random() * 100 + '%';
+                    wave.style.opacity = Math.random() * 0.6 + 0.2;
+                    wave.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    wave.style.animationDelay = (Math.random() * 4) + 's';
+                    summerContainer.appendChild(wave);
+                }
+            }
+            
+            // 모바일 최적화를 위한 추가 스크립트
+            let touchStartXMobile = 0;
+            let touchEndXMobile = 0;
+            const swipeThreshold = 30; // 더 작은 값으로 조정하여 민감도 향상
+            
+            document.addEventListener('touchstart', e => {
+                touchStartXMobile = e.changedTouches[0].screenX;
+            }, { passive: true }); // passive 옵션으로 성능 개선
+            
+            document.addEventListener('touchend', e => {
+                touchEndXMobile = e.changedTouches[0].screenX;
+                handleSwipeMobile();
+            }, { passive: true });
+            
+            function handleSwipeMobile() {
+                if (touchEndXMobile < touchStartXMobile - swipeThreshold) {
+                    window.changeSlide(1);
+                } else if (touchEndXMobile > touchStartXMobile + swipeThreshold) {
+                    window.changeSlide(-1);
+                }
+            }
+            
+            // 모바일에서 이중 탭 줌 방지
+            let lastTapTime = 0;
+            document.addEventListener('touchend', function(e) {
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTapTime;
+                if (tapLength < 500 && tapLength > 0) {
+                    e.preventDefault();
+                }
+                lastTapTime = currentTime;
+            });
+            
+            // 모바일에서 슬라이드 콘텐츠가 잘 보이도록 추가 조정
+            const adjustMobileLayout = () => {
+                if (window.innerWidth <= 768) {
+                    // 모바일에서 슬라이드 내용물 높이 조정
+                    const slideContents = document.querySelectorAll('.slide-content');
+                    slideContents.forEach(content => {
+                        content.style.height = 'auto';
+                        content.style.minHeight = '90vh';
+                    });
+                }
+            };
+            
+            // 초기 로드와 리사이즈 시 레이아웃 조정
+            adjustMobileLayout();
+            window.addEventListener('resize', adjustMobileLayout);
+        });
+    </script>
+</body>
+</html>
