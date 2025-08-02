@@ -47,7 +47,6 @@
         .calendar-icon .month {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #3b82f6;
             margin-bottom: 4px;
         }
 
@@ -56,20 +55,48 @@
             color: #64748b;
         }
 
+        /* 8월 - 뜨거운 여름 (레드 계열) */
+        .gradient-august {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        }
+        .gradient-august .month {
+            color: #dc2626;
+        }
+
+        /* 7월 - 여름 (오렌지 계열) */
+        .gradient-july {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+        }
+        .gradient-july .month {
+            color: #ea580c;
+        }
+
+        /* 6월 - 초여름 (그린-블루) */
         .gradient-june {
             background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
         }
+        .gradient-june .month {
+            color: #3b82f6;
+        }
 
+        /* 5월 - 봄 (블루-퍼플) */
         .gradient-may {
             background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
         }
+        .gradient-may .month {
+            color: #3b82f6;
+        }
 
+        /* 4월 - 봄 (그린-블루) */
         .gradient-april {
             background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
         }
+        .gradient-april .month {
+            color: #10b981;
+        }
 
         .latest-badge {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
             animation: pulse 2s infinite;
         }
 
@@ -79,6 +106,32 @@
             }
             50% {
                 transform: scale(1.05);
+            }
+        }
+
+        .heat-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heat-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
             }
         }
     </style>
@@ -124,17 +177,66 @@
 
         <!-- 월별 레터 목록 -->
         <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- 2025년 6월 레터 (최신호) -->
+            <!-- 2025년 8월 레터 (최신호) -->
+            <a href="2508.html" class="newsletter-card">
+                <div class="relative overflow-hidden rounded-t-lg heat-effect">
+                    <div class="h-40 gradient-august flex items-center justify-center">
+                        <div class="calendar-icon">
+                            <div class="month">8월</div>
+                            <div class="year">2025</div>
+                            <div class="mt-2 text-2xl text-red-600">
+                                <i class="fas fa-thermometer-full"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-4 left-4 latest-badge rounded-full px-3 py-1 text-sm font-medium text-white shadow">
+                        최신호
+                    </div>
+                </div>
+                <div class="p-6 bg-white rounded-b-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">8월 조합원레터</h3>
+                    <p class="text-gray-600 mb-4">7월 활동 리뷰와 8월 와인벨트, 지식놀이터 특별모임 안내</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="far fa-calendar-alt mr-2"></i>
+                        <span>발행일: 2025년 8월 2일</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 2025년 7월 레터 -->
+            <a href="2507.html" class="newsletter-card">
+                <div class="relative overflow-hidden rounded-t-lg">
+                    <div class="h-40 gradient-july flex items-center justify-center">
+                        <div class="calendar-icon">
+                            <div class="month">7월</div>
+                            <div class="year">2025</div>
+                            <div class="mt-2 text-2xl text-orange-600">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 bg-white rounded-b-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">7월 조합원레터</h3>
+                    <p class="text-gray-600 mb-4">6월 커피벨트 리뷰와 7월 초콜릿벨트, 환경교육 프로그램 안내</p>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="far fa-calendar-alt mr-2"></i>
+                        <span>발행일: 2025년 7월 1일</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 2025년 6월 레터 -->
             <a href="2506.html" class="newsletter-card">
                 <div class="relative overflow-hidden rounded-t-lg">
                     <div class="h-40 gradient-june flex items-center justify-center">
                         <div class="calendar-icon">
                             <div class="month">6월</div>
                             <div class="year">2025</div>
+                            <div class="mt-2 text-2xl text-blue-600">
+                                <i class="fas fa-leaf"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="absolute top-4 left-4 latest-badge rounded-full px-3 py-1 text-sm font-medium text-white shadow">
-                        최신호
                     </div>
                 </div>
                 <div class="p-6 bg-white rounded-b-lg">
@@ -154,6 +256,9 @@
                         <div class="calendar-icon">
                             <div class="month">5월</div>
                             <div class="year">2025</div>
+                            <div class="mt-2 text-2xl text-blue-600">
+                                <i class="fas fa-seedling"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,6 +279,9 @@
                         <div class="calendar-icon">
                             <div class="month">4월</div>
                             <div class="year">2025</div>
+                            <div class="mt-2 text-2xl text-green-600">
+                                <i class="fas fa-building"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -186,6 +294,28 @@
                     </div>
                 </div>
             </a>
+
+            <!-- 더 많은 레터가 있을 수 있음을 나타내는 플레이스홀더 -->
+            <div class="newsletter-card opacity-50 pointer-events-none">
+                <div class="relative overflow-hidden rounded-t-lg">
+                    <div class="h-40 bg-gray-300 flex items-center justify-center">
+                        <div class="calendar-icon">
+                            <div class="text-gray-500 text-2xl">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="text-gray-500 text-sm mt-2">준비중</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 bg-white rounded-b-lg">
+                    <h3 class="text-xl font-bold text-gray-500 mb-2">더 많은 레터</h3>
+                    <p class="text-gray-400 mb-4">매월 새로운 조합원레터가 발행됩니다</p>
+                    <div class="flex items-center text-sm text-gray-400">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>Coming Soon</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- 구독 안내 -->
@@ -209,6 +339,24 @@
                             조합원 가입 안내
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 통계 -->
+        <div class="mt-12 max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">5호</div>
+                    <div class="text-gray-600">총 발행 횟수</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">2025년</div>
+                    <div class="text-gray-600">시작 연도</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                    <div class="text-3xl font-bold text-orange-600 mb-2">매월</div>
+                    <div class="text-gray-600">정기 발행</div>
                 </div>
             </div>
         </div>
@@ -241,12 +389,22 @@
             const cards = document.querySelectorAll('.newsletter-card');
             cards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
+                    if (!this.classList.contains('pointer-events-none')) {
+                        this.style.transform = 'translateY(-8px)';
+                    }
                 });
                 card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
+                    if (!this.classList.contains('pointer-events-none')) {
+                        this.style.transform = 'translateY(0)';
+                    }
                 });
             });
+
+            // 최신호 강조 효과
+            const latestCard = document.querySelector('.newsletter-card');
+            if (latestCard) {
+                latestCard.style.border = '2px solid #dc2626';
+            }
         });
     </script>
 </body>
